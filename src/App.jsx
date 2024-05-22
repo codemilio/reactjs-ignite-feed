@@ -1,8 +1,18 @@
-function App() {
+import { Header } from './components/Header'
+import { PostList } from './components/PostList'
+import { Sidebar } from './components/Sidebar'
+import { Wrapper } from './components/Wrapper'
+import './global.css'
 
+export function App() {
   return (
-     <h1> Hello World </h1>
+    <>
+      <Header />
+      <Wrapper>
+        <Sidebar />
+        <PostList />
+      </Wrapper>
+    </>
   )
 }
 
-export default App

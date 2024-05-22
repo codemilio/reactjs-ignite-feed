@@ -5,27 +5,42 @@
   --gray-400: #8D8D99;
   --gray-600: #7C7C8A;
   --gray-700: #323238;
+  --gray-750: #29292E;
   --gray-800: #202024;
   --gray-900: #121214;
   
-  --green-200: #00B37E; 
+  --green-200: #00B37E;
   --green-500: #00875F; 
 
   --red-200: #F75A68;
   
-  --font-height-base: 160%;
+  --font-height-small: 1.4rem; 
+  --font-height-base: 1.6rem;
+
   --font-small: 0.75rem; /* 12px */
   --font-medium: 0.875rem; /* 14px */
   --font-base: 1rem; /* 16px */
   
   --font-weight-400: 400;
   --font-weight-600: 600;
+
+  --radius-base: 8px;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+:focus {
+  outline: transparent;
+  box-shadow: 0 0 0 2px var(--green-500);
+}
+
+button:focus {
+  outline: transparent;
+  box-shadow: 0 0 0 2px var(--white-base);
 }
 
 body {
