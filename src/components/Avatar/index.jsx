@@ -1,25 +1,16 @@
 import propTypes from 'prop-types'
 import style from './styles.module.css'
 
-export function Avatar(props) {
+export function Avatar({src, hasBorder}) {
   return(
     <img 
-      className={style.avatar}  
-      style={props.isHighlighted ? {
-        border: '4px solid var(--gray-800)',
-        outline: '2px solid var(--green-500)',
-        width: 'calc(3rem + 12px)',
-        height: 'calc(3rem + 12px)'
-      } : {}} 
-      src={props.src} 
+      className={hasBorder ? style.avatarWithBorder : style.avatar}
+      src={src} 
     />
   )
 }
 
 Avatar.propTypes = {
   src: propTypes.url,
-  isHighlighted: propTypes.bool // enable outline  
-
-  // border: 4px solid var(--gray-800);
-  // outline: 2px solid var(--green-500);
+  hasBorder: propTypes.bool // enable outline  
 }

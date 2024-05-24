@@ -12,7 +12,10 @@ export function Sidebar(){
       />
 
       <div className={styles.profile}>
-        <Avatar src="https://github.com/eupendragon.png" isHighlighted={true}/>
+        <Avatar 
+          hasBorder={true}
+          src="https://github.com/eupendragon.png" 
+        />
         <strong> Carlos Emilio </strong>
         <span> Web developer </span>
       </div>

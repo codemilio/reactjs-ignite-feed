@@ -8,8 +8,8 @@ export function Post() {
       <header>
         <div className={styles.author}>
           <Avatar
+            hasBorder
             src="https://github.com/eupendragon.png"
-            isHighlighted={true}
           />
           <div className={styles.info}>
             <strong>Carlos Emilio</strong>
