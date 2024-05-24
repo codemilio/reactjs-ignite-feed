@@ -4,12 +4,6 @@
   gap: 1rem;
 }
 
-.comment > img.avatar {
-  width: 3rem;
-  height: 3rem;
-  border-radius: var(--radius-base);
-}
-
 .box {
   flex: 1;
   display: flex;

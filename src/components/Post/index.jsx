@@ -1,15 +1,15 @@
 import styles from './styles.module.css'
 import { Comment } from '../Comment'
+import { Avatar } from '../Avatar'
 
 export function Post() {
   return (
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <img
-            className={styles.avatar}
+          <Avatar
             src="https://github.com/eupendragon.png"
-            alt="Foto de perfil."
+            isHighlighted={true}
           />
           <div className={styles.info}>
             <strong>Carlos Emilio</strong>
