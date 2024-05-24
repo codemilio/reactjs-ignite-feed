@@ -5,7 +5,10 @@ import style from './styles.module.css'
 export function Comment() {
   return (
     <div className={style.comment}>
-      <Avatar src="https://github.com/lucasspor.png"  />
+      <Avatar 
+        hasBorder={false} 
+        src="https://github.com/lucasspor.png"  
+      />
 
       <div className={style.box}>
         <div className={style.content}>

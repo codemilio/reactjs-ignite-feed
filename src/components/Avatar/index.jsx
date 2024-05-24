@@ -1,7 +1,7 @@
 import propTypes from 'prop-types'
 import style from './styles.module.css'
 
-export function Avatar({src, hasBorder}) {
+export function Avatar({src, hasBorder = true}) {
   return(
     <img 
       className={hasBorder ? style.avatarWithBorder : style.avatar}
