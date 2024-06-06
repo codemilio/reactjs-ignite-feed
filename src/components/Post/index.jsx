@@ -1,5 +1,6 @@
 import { Avatar } from '../Avatar'
 import { Comment } from '../Comment'
+import propTypes from 'prop-types'
 import styles from './styles.module.css'
 
 export function Post() {
@@ -39,4 +40,19 @@ export function Post() {
       <Comment />
     </article>
   )
+}
+
+Post.propTypes = {
+  author: {
+    avatarURL: propTypes.string,
+    name: propTypes.string,
+    role: propTypes.string
+  },
+  date: propTypes.string,
+  content: [
+    {
+      type: propTypes.string,
+      content: propTypes.string 
+    },
+  ]
 }

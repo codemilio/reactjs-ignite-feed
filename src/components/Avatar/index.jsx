@@ -11,6 +11,6 @@ export function Avatar({src, hasBorder = true}) {
 }
 
 Avatar.propTypes = {
-  src: propTypes.url,
+  src: propTypes.string,
   hasBorder: propTypes.bool // enable outline  
 }
