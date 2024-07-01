@@ -11,8 +11,22 @@ const postList: IPost[] = [
     },
     publishedAt: new Date(),
     content: [
-      'Meu post bla bla bla',
-      'more content lorem ipsom blas sbasde salm'
+      {
+        type: 'PARAGRAPH',
+        content: 'Meu post bla bla bla'
+      },
+      {
+        type: 'PARAGRAPH',
+        content: 'More content lorem ipsom blas sbasde salm...'
+      },
+      {
+        type: 'LINK',
+        content: '#ignite'
+      },
+      {
+        type: 'LINK',
+        content: '#hashtag'
+      },
     ]
   }
 ]

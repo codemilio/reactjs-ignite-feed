@@ -22,13 +22,9 @@ export function Post({ author, publishedAt, content }: Props) {
       </header>
 
       <div className={styles.content}>
-        {content.map(value => <p>{value}</p>)}
-        <p><a href="#"> https://meusite.com.br </a></p>
-        <p> 
-          <a href="#"> #programing </a>
-          <a href="#"> #react </a>
-          <a href="#"> #ignitefeed </a>
-        </p>
+        {content.map(data => data.type === 'PARAGRAPH' ? 
+          <p>{data.content}</p> : <p><a href='#'> {data.content} </a></p>
+        )}
       </div>
 
       <form className={styles.replies}>
@@ -54,7 +50,7 @@ Post.propTypes = {
   content: [
     {
       type: propTypes.string,
-      content: propTypes.string 
+      content: propTypes.string
     },
   ]
 }
