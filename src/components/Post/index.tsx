@@ -1,12 +1,19 @@
 import { Avatar } from '../Avatar'
 import { Comment } from '../Comment'
 import { IPost } from '../../utils/types'
-import propTypes from 'prop-types'
 import styles from './styles.module.css'
 
 type Props = IPost
 
 export function Post({ author, publishedAt, content }: Props) {
+
+  const publishedDateFormatted = new Intl.DateTimeFormat('pt-BR', {
+    day: '2-digit',
+    month: 'long',
+    minute: '2-digit',
+    hour: '2-digit'
+  }).format(publishedAt)
+
   return (
     <article className={styles.post}>
       <header>
@@ -18,12 +25,14 @@ export function Post({ author, publishedAt, content }: Props) {
           </div>
         </div>
 
-        <time title="20 de Maio às 10hrs" dateTime={publishedAt.toDateString()}> Publicado há 1h</time>
+        <time title={publishedDateFormatted} dateTime={publishedAt.toDateString()}> 
+          {publishedDateFormatted}
+        </time>
       </header>
 
       <div className={styles.content}>
         {content.map(data => data.type === 'PARAGRAPH' ? 
-          <p>{data.content}</p> : <p><a href='#'> {data.content} </a></p>
+          <p key={data.content}>{data.content}</p> : <p key={data.content}><a href='#'> {data.content} </a></p>
         )}
       </div>
 
@@ -38,19 +47,4 @@ export function Post({ author, publishedAt, content }: Props) {
       <Comment />
     </article>
   )
-}
-
-Post.propTypes = {
-  author: {
-    avatarURL: propTypes.string,
-    name: propTypes.string,
-    role: propTypes.string
-  },
-  date: propTypes.string,
-  content: [
-    {
-      type: propTypes.string,
-      content: propTypes.string
-    },
-  ]
 }
