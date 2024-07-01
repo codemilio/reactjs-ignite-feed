@@ -1,7 +1,11 @@
-import propTypes from 'prop-types'
 import style from './styles.module.css'
 
-export function Avatar({src, hasBorder = true}) {
+type Props = {
+  src: string
+  hasBorder?: boolean
+}
+
+export function Avatar({src, hasBorder = true}: Props) {
   return(
     <img 
       className={hasBorder ? style.avatarWithBorder : style.avatar}
@@ -10,7 +14,3 @@ export function Avatar({src, hasBorder = true}) {
   )
 }
 
-Avatar.propTypes = {
-  src: propTypes.string,
-  hasBorder: propTypes.bool // enable outline  
-}

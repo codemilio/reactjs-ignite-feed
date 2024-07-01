@@ -3,12 +3,18 @@ import { Comment } from '../Comment'
 import propTypes from 'prop-types'
 import styles from './styles.module.css'
 
+type Props = {
+  author: {
+    
+  }
+}
+
 export function Post() {
   return (
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <Avatar src="https://github.com/eupendragon.png" />
+          <Avatar src="https://github.com/codemilio.png" />
           <div className={styles.info}>
             <strong>Carlos Emilio</strong>
             <span>Web Developer</span>
