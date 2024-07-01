@@ -1,18 +1,23 @@
 import { Avatar } from '../Avatar'
 import { Comment } from '../Comment'
 import { IPost } from '../../utils/types'
+import { format, formatDistanceToNow } from 'date-fns'
+import { ptBR } from 'date-fns/locale/pt-BR'
 import styles from './styles.module.css'
 
 type Props = IPost
 
 export function Post({ author, publishedAt, content }: Props) {
 
-  const publishedDateFormatted = new Intl.DateTimeFormat('pt-BR', {
-    day: '2-digit',
-    month: 'long',
-    minute: '2-digit',
-    hour: '2-digit'
-  }).format(publishedAt)
+  const publishedDateFormatted = format(publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {
+    locale: ptBR
+  })
+
+  const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {
+    includeSeconds: true,
+    addSuffix: true,
+    locale: ptBR
+  })
 
   return (
     <article className={styles.post}>
@@ -25,8 +30,8 @@ export function Post({ author, publishedAt, content }: Props) {
           </div>
         </div>
 
-        <time title={publishedDateFormatted} dateTime={publishedAt.toDateString()}> 
-          {publishedDateFormatted}
+        <time title={publishedDateFormatted} dateTime={publishedAt.toISOString()}> 
+          {publishedDateRelativeToNow}
         </time>
       </header>
 
