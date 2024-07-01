@@ -1,36 +1,32 @@
 import { Avatar } from '../Avatar'
 import { Comment } from '../Comment'
+import { IPost } from '../../utils/types'
 import propTypes from 'prop-types'
 import styles from './styles.module.css'
 
-type Props = {
-  author: {
-    
-  }
-}
+type Props = IPost
 
-export function Post() {
+export function Post({ author, publishedAt, content }: Props) {
   return (
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <Avatar src="https://github.com/codemilio.png" />
+          <Avatar src={author.avatarUrl} />
           <div className={styles.info}>
-            <strong>Carlos Emilio</strong>
-            <span>Web Developer</span>
+            <strong>{author.name}</strong>
+            <span>{author.role}</span>
           </div>
         </div>
 
-        <time title="20 de Maio às 10hrs" dateTime="2024-05-20 10:00:00"> Publicado há 1h</time>
+        <time title="20 de Maio às 10hrs" dateTime={publishedAt.toDateString()}> Publicado há 1h</time>
       </header>
 
       <div className={styles.content}>
-        <p> Fala dev! </p>
-        <p> Este é o primeiro post da nossa aplicação feita em parceira com a Rocketseat</p>
+        {content.map(value => <p>{value}</p>)}
         <p><a href="#"> https://meusite.com.br </a></p>
         <p> 
           <a href="#"> #programing </a>
-          <a href="#"> #react</a>
+          <a href="#"> #react </a>
           <a href="#"> #ignitefeed </a>
         </p>
       </div>

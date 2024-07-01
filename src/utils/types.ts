@@ -1,4 +1,12 @@
 export interface IAuthor {
   name: string
-  profileUrl: string
+  avatarUrl: string
+  role: string 
+}
+
+export interface IPost {
+  id: string 
+  author: IAuthor
+  publishedAt: Date 
+  content: string[]
 }
