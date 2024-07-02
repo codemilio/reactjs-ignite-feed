@@ -6,12 +6,26 @@ import { Time } from '../Time'
 
 type Props = IComment & {
   deleteComment: (id: string) => void 
+  likeComment: (id: string) => void 
 }
 
-export function Comment({ id, author, content, likes, publishedAt, deleteComment }: Props) {
+export function Comment({ 
+  id, 
+  author, 
+  content, 
+  likes, 
+  isLiked = false, 
+  publishedAt, 
+  deleteComment, 
+  likeComment 
+}: Props) {
 
   function onDeleteComment() {
     deleteComment(id)
+  }
+
+  function onLikeComment() {
+    likeComment(id)
   }
 
   return (
@@ -39,7 +53,7 @@ export function Comment({ id, author, content, likes, publishedAt, deleteComment
         </div>
 
         <footer>
-          <button>
+          <button className={isLiked ? style.likedButton : ''} onClick={onLikeComment}>
             <ThumbsUp size={20}/>
             <span>Aplaudir</span>
             <span>{likes}</span>

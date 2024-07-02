@@ -69,3 +69,11 @@
 .box footer button:hover {
   color: var(--gray-100);
 }
+
+footer button.likedButton {
+  color: var(--green-200) 
+}
+
+footer button.likedButton:hover {
+  color: var(--green-500) 
+}

@@ -1,13 +1,13 @@
+import { useState } from 'react'
 import { Avatar } from '../Avatar'
 import { Comment } from '../Comment'
 import { Time } from '../Time'
-import { IComment, type IPost } from '../../utils/types'
+import type { IComment, IPost } from '../../utils/types'
 import styles from './styles.module.css'
-import { useState } from 'react'
 
 type Props = IPost
 
-const initialComments = [
+const initialComments: IComment[] = [
   {
     id: 'first-comment-1232123',
     author: {
@@ -17,7 +17,8 @@ const initialComments = [
     },
     content: 'Muito legal esse post!',
     likes: 20,
-    publishedAt: new Date()
+    publishedAt: new Date(),
+    isLiked: true
   }
 ]
 
@@ -31,7 +32,7 @@ export function Post({ author, publishedAt, content }: Props) {
 
     setComments([...comments, {
       id: `comment-${comments.length + 1}`,
-      likes: 20,
+      likes: 0,
       content: newComment,
       publishedAt: new Date(),
       author: {
@@ -39,6 +40,7 @@ export function Post({ author, publishedAt, content }: Props) {
         avatarUrl: 'https://github.com/codemilio.png',
         role: 'Desenvolvedor Web'
       },
+      isLiked: false
     }])
 
     setNewComment('')
@@ -56,6 +58,16 @@ export function Post({ author, publishedAt, content }: Props) {
   function handleDeleteComment(id: string) {
     const updatedComments = comments.filter(comment => comment.id !== id)
     setComments([...updatedComments])
+  }
+
+  function handleLikeComment(id: string) {
+    setComments(prevComments => prevComments.map(
+      comment => comment.id === id ? {
+        ...comment, 
+        likes: comment.isLiked ? comment.likes - 1 : comment.likes + 1,
+        isLiked: !comment.isLiked
+      } : comment
+    ))
   }
 
   return (
@@ -97,6 +109,7 @@ export function Post({ author, publishedAt, content }: Props) {
           {...data} 
           key={data.id}
           deleteComment={handleDeleteComment}
+          likeComment={handleLikeComment}
         />
       )}
     </article>

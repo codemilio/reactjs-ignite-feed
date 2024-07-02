@@ -22,4 +22,5 @@ export interface IComment {
   content: string 
   likes: number
   publishedAt: Date 
+  isLiked?: boolean
 }
