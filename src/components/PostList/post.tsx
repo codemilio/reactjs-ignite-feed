@@ -1,5 +1,5 @@
 import { Avatar } from '../Avatar'
-import { CommentList } from '../CommentList'
+import { Comment } from '../Comment'
 import { Time } from '../Time'
 import { IComment, type IPost } from '../../utils/types'
 import styles from './styles.module.css'
@@ -7,8 +7,8 @@ import { useState } from 'react'
 
 type Props = IPost
 
-export function Post({ author, publishedAt, content }: Props) {
-  const [comments, setComments] = useState<IComment[]>([{
+const initialComments = [
+  {
     id: 'first-comment-1232123',
     author: {
       name: 'Lucas Silva',
@@ -18,16 +18,20 @@ export function Post({ author, publishedAt, content }: Props) {
     content: 'Muito legal esse post!',
     likes: 20,
     publishedAt: new Date()
-  }])
+  }
+]
+
+export function Post({ author, publishedAt, content }: Props) {
+  const [comments, setComments] = useState<IComment[]>(initialComments)
+  const [newComment, setNewComment] = useState<string>('')
 
   function handleCreateNewComment(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
-    const newComment = e.currentTarget.comment as HTMLTextAreaElement
     setComments([...comments, {
       id: `comment-${comments.length + 1}`,
       likes: 20,
-      content: newComment.value,
+      content: newComment,
       publishedAt: new Date(),
       author: {
         name: 'Carlos Emilio',
@@ -35,6 +39,17 @@ export function Post({ author, publishedAt, content }: Props) {
         role: 'Desenvolvedor Web'
       },
     }])
+
+    setNewComment('')
+  }
+
+  function handleChangeComment(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    setNewComment(e.target.value)
+  }
+
+  function handleDeleteComment(id: string) {
+    const updatedComments = comments.filter(comment => comment.id !== id)
+    setComments([...updatedComments])
   }
 
   return (
@@ -59,13 +74,19 @@ export function Post({ author, publishedAt, content }: Props) {
 
       <form className={styles.replies} onSubmit={handleCreateNewComment}>
         <strong> Deixe um comentário: </strong>
-        <textarea placeholder="Digite seu comentário..." name='comment' />
+        <textarea value={newComment} onChange={handleChangeComment} placeholder="Digite seu comentário..." />
         <footer>
           <button type='submit'> Enviar </button>
         </footer>
       </form>
 
-      <CommentList comments={comments} />
+      {comments.map(data => 
+        <Comment 
+          {...data} 
+          key={data.id}
+          deleteComment={handleDeleteComment}
+        />
+      )}
     </article>
   )
 }
