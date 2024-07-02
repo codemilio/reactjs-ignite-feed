@@ -1,5 +1,5 @@
 import { IPost } from '../../utils/types'
-import { Post } from '../Post'
+import { Post } from './post'
 
 const postList: IPost[] = [
   {
