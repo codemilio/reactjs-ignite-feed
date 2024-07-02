@@ -24,6 +24,7 @@ const initialComments = [
 export function Post({ author, publishedAt, content }: Props) {
   const [comments, setComments] = useState<IComment[]>(initialComments)
   const [newComment, setNewComment] = useState<string>('')
+  const isNewCommentEmpty = newComment.length === 0
 
   function handleCreateNewComment(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -44,7 +45,12 @@ export function Post({ author, publishedAt, content }: Props) {
   }
 
   function handleChangeComment(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    e.target.setCustomValidity('')
     setNewComment(e.target.value)
+  }
+
+  function handleNewCommentInvalid(e: React.InvalidEvent<HTMLTextAreaElement>) {
+    e.target.setCustomValidity('O comentário não pode estar vazio.')
   }
 
   function handleDeleteComment(id: string) {
@@ -74,9 +80,15 @@ export function Post({ author, publishedAt, content }: Props) {
 
       <form className={styles.replies} onSubmit={handleCreateNewComment}>
         <strong> Deixe um comentário: </strong>
-        <textarea value={newComment} onChange={handleChangeComment} placeholder="Digite seu comentário..." />
+        <textarea 
+          value={newComment} 
+          onChange={handleChangeComment} 
+          onInvalid={handleNewCommentInvalid}
+          placeholder="Digite seu comentário..."
+          required 
+        />
         <footer>
-          <button type='submit'> Enviar </button>
+          <button type='submit' disabled={isNewCommentEmpty}> Enviar </button>
         </footer>
       </form>
 
