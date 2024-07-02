@@ -15,3 +15,11 @@ export interface IPost {
   publishedAt: Date 
   content: IContentParagraph[]
 }
+
+export interface IComment {
+  id: string
+  author: IAuthor 
+  content: string 
+  likes: number
+  publishedAt: Date 
+}
